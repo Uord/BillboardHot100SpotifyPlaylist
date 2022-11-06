@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 import requests
-from collections import namedtuple
+import sys
 
 def scrape_chart(date: str) -> list[tuple[str,str]]:
     response = requests.get(f"https://www.billboard.com/charts/hot-100/{date}")
@@ -15,4 +15,4 @@ def scrape_chart(date: str) -> list[tuple[str,str]]:
     return [(artist,title) for artist,title in zip(artists,titles)]
 
 if __name__ == "__main__":
-    print(scrape_chart("2021-01-01"))
+    print(scrape_chart(sys.argv[1]))
